@@ -177,33 +177,46 @@ Contri-Tracker/
 
 ### 🎓 Teacher Registration & Login
 ![Teacher Register](screenshot_link_yahan)
-![Uploading techlogin.png…]()
+<img width="1366" height="820" alt="teshreg" src="https://github.com/user-attachments/assets/806d0ecd-9656-40fd-bb8d-756ca27769ec" /><img width="1366" height="762" alt="techlogin" src="https://github.com/user-attachments/assets/5fcefe31-4be5-4913-8ae0-fbd0cd6ba687" />
 
 
 ### 🎓 Teacher Dashboard
-![Teacher Dashboard](screenshot_link_yahan)
+<img width="1366" height="607" alt="tech_dash" src="https://github.com/user-attachments/assets/4a1808a5-bbba-41df-bd84-9e4f103ea3bf" />
+
+### 👥 Group Management
+<img width="1366" height="1081" alt="Create_group" src="https://github.com/user-attachments/assets/c2f72d68-6f16-4a8c-9154-44033c9f85f1" />
+
 
 ### 📋 Project Detail (Teacher View)
-![Project Detail](screenshot_link_yahan)
+<img width="1366" height="1621" alt="project _detailed" src="https://github.com/user-attachments/assets/3a84eae6-88e8-45d3-a91a-42dff5b36dba" />
 
 ### ✅ Task Management
-![Task Management](screenshot_link_yahan)
+<img width="1366" height="1043" alt="task_assign" src="https://github.com/user-attachments/assets/93712c47-025c-452e-bc6c-f8cc2a27ff49" />
 
 ### 📚 Student Registration & Login
-![Student Register](screenshot_link_yahan)
-![Student Login](screenshot_link_yahan)
+<img width="1366" height="820" alt="stu_reg" src="https://github.com/user-attachments/assets/2f8f01ca-f009-4dca-aab6-c50c877849b8" />
+<img width="1366" height="762" alt="stu_login" src="https://github.com/user-attachments/assets/cd9317df-a8ae-4b1f-be41-5aa152223768" />
 
 ### 📚 Student Dashboard
-![Student Dashboard](screenshot_link_yahan)
+<img width="1366" height="943" alt="stu_dash" src="https://github.com/user-attachments/assets/4b1894b4-c181-4024-b7d5-7d1120684c44" />
+
+### 📋 Project Detail (Student View)
+<img width="1366" height="1323" alt="stu_all_project_detial" src="https://github.com/user-attachments/assets/d009cf88-29dc-480a-8647-5592d8c541dc" />
+
 
 ### 📁 File Submission
-![File Submission](screenshot_link_yahan)
+<img width="1366" height="789" alt="submission_page" src="https://github.com/user-attachments/assets/56616e2d-bb7b-4e6f-b314-de256825f6d9" />
+
+### 📊 Student Progress Tracker
+<img width="1366" height="848" alt="stu_progressbaar" src="https://github.com/user-attachments/assets/3f56ba73-a6d4-4224-ac19-2f6c12c39338" />
+
+
 
 ### ⭐ Team Rating
-![Team Rating](screenshot_link_yahan)
+<img width="1366" height="1085" alt="Team_rate" src="https://github.com/user-attachments/assets/d3efd234-9716-4d41-9791-739901d0386c" />
 
 ### 🔌 REST API
-![REST API](screenshot_link_yahan)
+<img width="1366" height="1168" alt="rest_api" src="https://github.com/user-attachments/assets/9212f28e-03fc-4f2e-ae1c-d33ea733beaf" />
 
 ---
 
@@ -221,7 +234,6 @@ Contri-Tracker/
 
 **Harshit Pandey**
 
-* 2nd Year CSE Student
 * Passionate about Backend Development & Problem Solving
 * Building real-world projects to grow 🚀
 
