@@ -172,11 +172,13 @@ Contri-Tracker/
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](screenshot_link_yahan)
+<img width="1366" height="1594" alt="home" src="https://github.com/user-attachments/assets/7d6cda5b-b1ab-4f34-8b11-f2e8a151ce00" />
+
 
 ### 🎓 Teacher Registration & Login
 ![Teacher Register](screenshot_link_yahan)
-![Teacher Login](screenshot_link_yahan)
+![Uploading techlogin.png…]()
+
 
 ### 🎓 Teacher Dashboard
 ![Teacher Dashboard](screenshot_link_yahan)
