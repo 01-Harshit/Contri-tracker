@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ProjectHub — Project Collaboration Simplified{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero fade-in">
+  <div class="hero-badge">✦ Built for Academic Teams</div>
+  <h1 class="hero-title">Where Student Projects <br><span class="gradient-text">Come Alive</span></h1>
+  <p class="hero-sub">A dual-portal platform — teachers assign, students collaborate, everyone thrives.</p>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Portals</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Projects</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Platform</span>
+    </div>
+  </div>
+</div>
+
+<!-- Features Row -->
+<div class="features-row fade-in">
+  <div class="feature-pill">📋 Task Tracking</div>
+  <div class="feature-pill">🔑 Join via Code</div>
+  <div class="feature-pill">📊 Progress Monitor</div>
+  <div class="feature-pill">⭐ Peer Rating</div>
+  <div class="feature-pill">📁 File Submissions</div>
+  <div class="feature-pill">💬 Team Chat</div>
+</div>
+
+<!-- Portal Cards -->
+<div class="portal-grid fade-in">
+
+  <!-- Teacher Card -->
+  <div class="portal-card teacher-card">
+    <div class="portal-icon">🎓</div>
+    <div class="portal-tag">For Educators</div>
+    <h2 class="portal-title">Teacher Portal</h2>
+    <p class="portal-desc">Create projects, assign tasks, track submissions and monitor every student's contribution in real-time.</p>
+    <ul class="portal-features">
+      <li>✓ Create & manage projects</li>
+      <li>✓ Assign tasks to groups</li>
+      <li>✓ View all submissions</li>
+      <li>✓ Monitor progress live</li>
+    </ul>
+    <div class="portal-actions">
+      <a href="{% url 'teacher_login' %}" class="btn btn-primary">Login as Teacher</a>
+      <a href="{% url 'teacher_register' %}" class="btn btn-ghost">Create Account</a>
+    </div>
+  </div>
+
+  <!-- Student Card -->
+  <div class="portal-card student-card">
+    <div class="portal-icon">📚</div>
+    <div class="portal-tag">For Students</div>
+    <h2 class="portal-title">Student Portal</h2>
+    <p class="portal-desc">Join projects with a code, collaborate with your team, submit work and rate your peers.</p>
+    <ul class="portal-features">
+      <li>✓ Join via unique code</li>
+      <li>✓ Track assigned tasks</li>
+      <li>✓ Submit work & files</li>
+      <li>✓ Rate team members</li>
+    </ul>
+    <div class="portal-actions">
+      <a href="{% url 'student_login' %}" class="btn btn-secondary">Login as Student</a>
+      <a href="{% url 'student_register' %}" class="btn btn-ghost">Create Account</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer strip -->
+<div class="footer-strip fade-in">
+  <span>Built with Django · REST API · Firebase </span>
+</div>
+
+{% endblock %}

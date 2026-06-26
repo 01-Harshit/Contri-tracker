@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.name }} - ProjectHub{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+        <div>
+            <h1>{{ project.name }}</h1>
+            <p style="color: var(--text-secondary);">Join Code: <code style="color: var(--accent-secondary); background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 0.3rem;">{{ project.join_code }}</code></p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <a href="{% url 'edit_project' project.id %}" class="btn btn-secondary">Edit Project</a>
+            <a href="{% url 'teacher_create_group' project.id %}" class="btn btn-secondary">+ Create Group</a>
+            <a href="{% url 'create_task' project.id %}" class="btn btn-primary">+ Assign Task</a>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+        <div>
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem;">Project Tasks</h2>
+                {% if tasks %}
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        {% for task in tasks %}
+                            <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid var(--accent-primary);">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h3 style="font-size: 1.1rem; margin-bottom: 0;">{{ task.name }}</h3>
+                                    <div style="display: flex; align-items: center; gap: 1rem;">
+                                        <span class="badge badge-{{ task.status }}">{{ task.get_status_display }}</span>
+                                        <a href="{% url 'edit_task' task.id %}" style="color: var(--text-secondary); font-size: 0.8rem; text-decoration: none;">Edit</a>
+                                    </div>
+                                </div>
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.5rem 0;">{{ task.description|truncatechars:100 }}</p>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary);">
+                                    <span>Assigned to: <strong>{{ task.assigned_to.get_full_name }}</strong></span>
+                                    <span>Due: {{ task.deadline }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">No tasks assigned yet.</p>
+                {% endif %}
+            </div>
+
+            <div class="glass-card">
+                <h2 style="font-size: 1.25rem;">Groups</h2>
+                {% if groups %}
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        {% for group in groups %}
+                            <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 0.5rem; border-top: 3px solid var(--accent-secondary);">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <h3 style="font-size: 1rem; margin: 0;"><a href="{% url 'teacher_group_detail' group.id %}" style="color: inherit; text-decoration: none;">{{ group.name }}</a></h3>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <a href="{% url 'teacher_group_detail' group.id %}" style="font-size: 0.7rem; color: var(--accent-primary); text-decoration: none;">Details</a>
+                                        <a href="{% url 'edit_group' group.id %}" style="font-size: 0.7rem; color: var(--text-secondary); text-decoration: none;">Edit</a>
+                                        <code style="font-size: 0.65rem; color: var(--accent-secondary);">{{ group.join_code }}</code>
+                                    </div>
+                                </div>
+                                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Leader: <strong>{{ group.leader.get_full_name|default:"None" }}</strong></p>
+                                <ul style="list-style: none; font-size: 0.75rem; color: var(--text-secondary);">
+                                    {% for member in group.members.all %}
+                                        <li {% if member.student == group.leader %}style="color: var(--text-primary); font-weight: 600;"{% endif %}>
+                                            • {{ member.student.get_full_name }}
+                                            {% for pm in project_members %}
+                                                {% if pm.student == member.student and pm.avg_rating %}
+                                                    <span style="color: gold; font-size: 0.6rem; margin-left: 0.5rem;">★ {{ pm.avg_rating|floatformat:1 }}</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">No groups created yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div>
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem;">Manual Add Member</h2>
+                <form action="{% url 'add_member' project.id %}" method="POST" style="margin-top: 1rem;">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label style="font-size: 0.8rem;">Student Email</label>
+                        <input type="email" name="email" required placeholder="student@example.com" style="padding: 0.5rem;">
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%; padding: 0.5rem;">Add Student</button>
+                </form>
+            </div>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Project <span style="color: var(--accent-secondary);">Health</span></h2>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div style="width: 200px; height: 200px;">
+                        <canvas id="projectStatusChart"></canvas>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary);">
+                        <span>To Do: <strong>{{ todo_count }}</strong></span>
+                        <span>In Progress: <strong>{{ in_progress_count }}</strong></span>
+                        <span>Done: <strong>{{ completed_count }}</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const ctx2 = document.getElementById('projectStatusChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['To Do', 'In Progress', 'Completed'],
+                        datasets: [{
+                            data: [{{ todo_count }}, {{ in_progress_count }}, {{ completed_count }}],
+                            backgroundColor: ['#6366f1', '#f59e0b', '#10b981'],
+                            borderWidth: 0,
+                            hoverOffset: 15
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        cutout: '75%'
+                    }
+                });
+            </script>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem;">Project Members</h2>
+                {% if project_members %}
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        {% for member in project_members %}
+                            <li style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">
+                                <div style="display: flex; flex-direction: column;">
+                                    <span style="font-size: 0.9rem;">{{ member.student.get_full_name }}</span>
+                                    {% if member.avg_rating %}
+                                        <span style="font-size: 0.7rem; color: gold;">★ {{ member.avg_rating|floatformat:1 }} Peer Rating</span>
+                                    {% endif %}
+                                </div>
+                                {% if member.student.id in students_in_groups %}
+                                    <span style="font-size: 0.7rem; color: var(--success);">In Group</span>
+                                {% else %}
+                                    <span style="font-size: 0.7rem; color: var(--text-secondary);">Unassigned</span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">No students joined yet.</p>
+                {% endif %}
+            </div>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem; margin-bottom: 1.5rem;">Project <span style="color: var(--accent-secondary);">Discussion</span></h2>
+                
+                <form action="{% url 'teacher_post_message' project.id %}" method="POST" style="margin-bottom: 1.5rem;">
+                    {% csrf_token %}
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" name="content" required placeholder="Send an announcement or answer a query..." style="flex: 1; padding: 0.6rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 0.5rem; color: var(--text-primary); font-size: 0.9rem;">
+                        <button type="submit" class="btn btn-primary" style="padding: 0.6rem 1rem;">Post</button>
+                    </div>
+                </form>
+
+                <div style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; padding-right: 0.5rem;">
+                    {% if messages %}
+                        {% for msg in messages %}
+                            <div style="background: rgba(255,255,255,0.03); padding: 0.75rem; border-radius: 0.5rem; border-left: 3px solid {% if msg.user.profile.role == 'teacher' %}var(--accent-secondary){% else %}var(--accent-primary){% endif %};">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                                    <span style="font-size: 0.8rem; font-weight: bold; color: {% if msg.user.profile.role == 'teacher' %}var(--accent-secondary){% else %}var(--text-primary){% endif %};">
+                                        {{ msg.user.get_full_name }} 
+                                        {% if msg.user.profile.role == 'teacher' %}<small style="font-size: 0.6rem; vertical-align: middle;">(You)</small>{% endif %}
+                                    </span>
+                                    <span style="font-size: 0.7rem; color: var(--text-secondary);">{{ msg.created_at|date:"M d, H:i" }}</span>
+                                </div>
+                                <p style="font-size: 0.85rem; margin: 0; line-height: 1.4;">{{ msg.content }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p style="text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 1rem;">No messages yet. Start the discussion!</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="font-size: 1.1rem;">About Project</h2>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; white-space: pre-line;">{{ project.description }}</p>
+                <p style="margin-top: 1rem; font-size: 0.8rem;">Deadline: {{ project.deadline }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
