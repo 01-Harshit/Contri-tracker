@@ -176,8 +176,8 @@ Contri-Tracker/
 
 
 ### 🎓 Teacher Registration & Login
-![Teacher Register](screenshot_link_yahan)
-<img width="1366" height="820" alt="teshreg" src="https://github.com/user-attachments/assets/806d0ecd-9656-40fd-bb8d-756ca27769ec" /><img width="1366" height="762" alt="techlogin" src="https://github.com/user-attachments/assets/5fcefe31-4be5-4913-8ae0-fbd0cd6ba687" />
+<img width="1366" height="820" alt="teshreg" src="https://github.com/user-attachments/assets/806d0ecd-9656-40fd-bb8d-756ca27769ec" />
+<img width="1366" height="762" alt="techlogin" src="https://github.com/user-attachments/assets/5fcefe31-4be5-4913-8ae0-fbd0cd6ba687" />
 
 
 ### 🎓 Teacher Dashboard
