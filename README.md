@@ -5,7 +5,6 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat-square&logo=python)
 ![Django](https://img.shields.io/badge/Django-5.2-green?style=flat-square&logo=django)
 ![DRF](https://img.shields.io/badge/REST_API-DRF-red?style=flat-square)
-![Firebase](https://img.shields.io/badge/Firebase-Integrated-orange?style=flat-square&logo=firebase)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
 
 ---
