@@ -15,6 +15,8 @@
 
 Teachers get complete control to create projects, assign tasks, and track every student's contribution. Students get a clean workspace to join projects, collaborate in groups, submit work, and evaluate peers — making the entire academic project lifecycle transparent, organized, and efficient.
 
+To ensure backend stability and seamless integration, all REST API endpoints have been thoroughly tested and verified via **Postman** (covering full CRUD workflows). A ready-to-import Postman collection is included in the project for instant API testing.
+
 ---
 
 ## ✨ Features
@@ -121,16 +123,27 @@ Visit `http://127.0.0.1:8000` in your browser 🚀
 
 ---
 
+## 🧪 API Documentation & Testing
+
+You can test all endpoints using the provided Postman collection.
+
+1. Open **Postman**.
+2. Click **Import** -> Select `postman/postman-api-v1.json` from the repo.
+3. Set your base URL environment variable to `http://127.0.0.1:8000/`.
+
+---
+
 ## 🔌 API Endpoints
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/projects/` | List all projects |
-| POST | `/api/projects/` | Create a new project |
-| GET | `/api/projects/<id>/` | Get project details |
-| PUT | `/api/projects/<id>/` | Update a project |
-| DELETE | `/api/projects/<id>/` | Delete a project |
-| GET | `/api/tasks/` | List all tasks |
+|---|---|---|
+| `GET` | `/api/projects/` | List all projects |
+| `POST` | `/api/projects/` | Create a new project |
+| `GET` | `/api/projects/<id>/` | Retrieve specific project details |
+| `PUT` | `/api/projects/<id>/` | Update full project details |
+| `PATCH` | `/api/projects/<id>/` | Partial update project details |
+| `DELETE` | `/api/projects/<id>/` | Delete a project |
+| `GET` | `/api/tasks/` | List all assigned tasks |
 
 ---
 
@@ -138,23 +151,29 @@ Visit `http://127.0.0.1:8000` in your browser 🚀
 
 ```
 Contri-Tracker/
-├── contritracker/          # Django project settings
+├── contritracker/         # Django project settings
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
-├── core/                   # Main application
-│   ├── models.py           # Database models
-│   ├── views_teacher.py    # Teacher portal views
-│   ├── views_student.py    # Student portal views
-│   ├── api_views.py        # REST API views
-│   ├── serializers.py      # DRF serializers
+├── core/                  # Main application logic
+│   ├── models.py          # Database models
+│   ├── views_teacher.py   # Teacher portal views
+│   ├── views_student.py   # Student portal views
+│   ├── api_views.py       # REST API views
+│   ├── serializers.py     # DRF serializers
 │   └── forms.py
-├── templates/              # HTML templates
+├── postman/               # API Postman collection
+│   └── postman-api-v1.json
+├── templates/             # HTML templates
+│   ├── profile/
+│   ├── registration/
+│   ├── student/
 │   ├── teacher/
-│   └── student/
-├── static/                 # CSS, JS, assets
-├── requirements.txt
-└── manage.py
+│   ├── base.html
+│   └── home.html
+├── static/                # CSS, JS, assets
+├── requirements.txt       # Project dependencies
+└── manage.py              # Django management script
 ```
 
 ---
@@ -240,3 +259,7 @@ Contri-Tracker/
 ---
 
 ⭐ If you like this project, consider giving it a **Star** on GitHub!
+
+## 📜 License
+
+This project is proprietary and built for academic purposes. All rights reserved.
