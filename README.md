@@ -39,8 +39,8 @@ To ensure backend stability and seamless integration, all REST API endpoints hav
 ### 🔌 REST API
 * Full RESTful API built with Django REST Framework
 * Endpoints for Projects, Tasks, and Groups
-* Clean JSON response format
-* Authentication-ready endpoints
+* Full CRUD operations with clean JSON response format
+* Tested & verified via Postman (Collection included)
 
 ### 🔐 Authentication System
 * Separate login/register for Teachers and Students
@@ -55,6 +55,7 @@ To ensure backend stability and seamless integration, all REST API endpoints hav
 |-------|------------|
 | Backend | Django 5.2, Python 3.10+ |
 | REST API | Django REST Framework |
+| API Testing | Postman |
 | Database | SQLite |
 | Static Files | Whitenoise |
 | Frontend | HTML, CSS, JavaScript |
